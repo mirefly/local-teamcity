@@ -1,0 +1,19 @@
+version: '3'
+services:
+  tc-server:
+    image: mirefly/tc-server
+    container_name: local-tc-server
+    ports:
+      - "8111:8111"
+    volumes:
+      - ~/local-teamcity-data/data:/data/teamcity_server/datadir
+      - ~/local-teamcity-data/logs:/opt/teamcity/logs
+      - ~/r:/repo
+  tc-agent:
+    image: mirefly/tc-agent
+    container_name: local-tc-agent
+    environment:
+      - SERVER_URL=${IP}:8111
+    volumes:
+      - ~/r:/repo
+

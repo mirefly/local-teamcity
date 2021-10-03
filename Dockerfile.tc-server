@@ -1,0 +1,8 @@
+FROM jetbrains/teamcity-server
+
+USER root
+RUN mkdir /repo
+RUN chown -R tcuser:tcuser /repo
+
+USER tcuser:tcuser
+

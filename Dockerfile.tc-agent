@@ -1,0 +1,10 @@
+FROM jetbrains/teamcity-agent
+
+USER root
+RUN mkdir /repo
+RUN chown -R buildagent:buildagent /repo
+RUN apt-get update; apt install ca-certificates
+RUN curl -fssL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get install -y nodejs build-essential
+
+USER buildagent:buildagent
